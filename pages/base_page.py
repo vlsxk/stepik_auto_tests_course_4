@@ -1,4 +1,4 @@
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, InvalidSelectorException
 
 
 class BasePage:
@@ -14,5 +14,7 @@ class BasePage:
         try:
             self.browser.find_element(how, what)
         except NoSuchElementException:
+            return False
+        except InvalidSelectorException:
             return False
         return True
